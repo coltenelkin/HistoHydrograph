@@ -1,7 +1,6 @@
-import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
 import time
+import matplotlib.pyplot as plt
 
 def HistoHydrograph(xArray, yArray, **kwargs):
     ### function HISTOHYDROGRAPH creates an hydrograph attached to a histogram of the data.
@@ -22,7 +21,7 @@ def HistoHydrograph(xArray, yArray, **kwargs):
         # density: true if you want the histogram to show relative density as opposed to count. Do not resize the figure if you use TRUE
         # legendloc: [l1, l2] array with the legend location within the figure. l1, l2 values between 0 and 1. 
     
-    # Final note: dependencies include numpy as np, matplotlib, pyplot (as plt), and time
+    # Final note: dependencies include matplotlib, pyplot (as plt), and time
     x = xArray
     y = yArray
     for key, value in kwargs.items():
@@ -86,7 +85,10 @@ def HistoHydrograph(xArray, yArray, **kwargs):
     if 'color2' not in locals():
         color2 = 'tab:orange'
     if 'legendloc' not in locals():
-        legendloc = [.7, .7]
+        if 'y2' not in locals():
+            legendloc = 'best'
+        else:
+            legendloc = [.7, .7]
         
 
     if 'y2' in locals():
@@ -101,7 +103,7 @@ def HistoHydrograph(xArray, yArray, **kwargs):
         # initialize figure
         fig, (a0, ax) = plt.subplots(1, 2, width_ratios = [5, 2], sharey = True)
         fig.set_figwidth(10)
-        fig.subplots_adjust(wspace=0.002)
+        fig.subplots_adjust(wspace=0)
         
 
         # left plot, drawing y array 1
@@ -138,9 +140,8 @@ def HistoHydrograph(xArray, yArray, **kwargs):
         
         # right plot drawing y array 2
         ax2 = ax.twinx()
-        flowHist = ax2.hist(flow, orientation = 'horizontal', bins = bins2, color = color2, alpha = 0.6)
-        ax2.set_ylabel('Discharge [cfs]')
-        ax2.set_ylim([fmin, fmax])
+        flowHist = ax2.hist(y2, orientation = 'horizontal', bins = bins2, color = color2, alpha = 0.6)
+        ax2.set_ylabel(ylabel2)
         ax2.tick_params(axis="y", color = 'b', width = 2, length = 6)
 
     
@@ -191,11 +192,4 @@ def HistoHydrograph(xArray, yArray, **kwargs):
         ax.set_ylim(ylims)
 
         if label != '__nolabel__':
-            fig.legend(loc=legendloc)
-        
-                
-
-HistoHydrograph(dates, stage, yarray2 = flow, 
-                bins = 100,
-                color = [0.2, 0.7, 0.2], color2 = 'k',
-                label = 'Stage at 435.47 RL', label2 = 'Discharge at\nSwan Falls Dam')
+            a0.legend(loc = legendloc)
