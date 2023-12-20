@@ -193,3 +193,4 @@ def HistoHydrograph(xArray, yArray, **kwargs):
 
         if label != '__nolabel__':
             a0.legend(loc = legendloc)
+    plt.show()
