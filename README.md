@@ -6,4 +6,6 @@ Hydrograph and Stage.
 ![DischargeAndStage](https://github.com/coltenelkin/HistoHydrograph/assets/55114059/b6b88635-9935-4d40-bae7-bb319420fe62)
 
 
-See the HHExampleRuns.py script to create your own example figures. You can either open it in an IDE or download the scripts and data to a directory, open the command terminal, navigate to the directory, and call $python HHExampleRuns.py * where the * is either 1, 2, or 3 (depending on which figure you'd like to create).
+See the HHExampleRuns.py script to create your own example figures. You can either open it in an IDE or download the scripts and data to a directory, open the command terminal, navigate to the directory, and call 
+$python HHExampleRuns.py * 
+where the * is either 1, 2, or 3 (depending on which figure you'd like to create).
