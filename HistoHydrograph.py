@@ -20,6 +20,7 @@ def HistoHydrograph(xArray, yArray, **kwargs):
         # bins2: same as bins, but for a secondary y array
         # density: true if you want the histogram to show relative density as opposed to count. Do not resize the figure if you use TRUE
         # legendloc: [l1, l2] array with the legend location within the figure. l1, l2 values between 0 and 1. 
+        # saveFig: 'string' which denotes the name of the figure to export if desired. If no name is designated, then the figure is plotted but not saved.
     
     # Final note: dependencies include matplotlib, pyplot (as plt), and time
     x = xArray
@@ -60,6 +61,10 @@ def HistoHydrograph(xArray, yArray, **kwargs):
 
         if key.lower() == 'legendloc':
             legendloc = value
+            
+        if key.lower() == 'savefig':
+            saveFig = True
+            saveFigName = value
 
     if 'label' not in locals():
         label = '__nolabel__'
@@ -89,6 +94,8 @@ def HistoHydrograph(xArray, yArray, **kwargs):
             legendloc = 'best'
         else:
             legendloc = [.7, .7]
+    if 'saveFig' not in locals():
+        saveFig = False
         
 
     if 'y2' in locals():
@@ -193,4 +200,8 @@ def HistoHydrograph(xArray, yArray, **kwargs):
 
         if label != '__nolabel__':
             a0.legend(loc = legendloc)
+    
+    if saveFig:
+        fig.savefig(saveFigName, dpi = 300)
+    
     plt.show()
