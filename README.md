@@ -7,5 +7,7 @@ Hydrograph and Stage.
 
 
 See the HHExampleRuns.py script to create your own example figures. You can either open it in an IDE or download the scripts and data to a directory, open the command terminal, navigate to the directory, and call 
+<\br>
 $python HHExampleRuns.py * 
+<\br>
 where the * is either 1, 2, or 3 (depending on which figure you'd like to create).
